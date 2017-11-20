@@ -45,11 +45,7 @@ func ElizaResponse(inputStr string) string{
 		 "Phuhuhuhu! You're very funny!",
 		 "Thats a topic I dont even wanna touch!",
 		 "hmmmmm...explain in detail?",
-		 "I fucking hate go",
-		 "Why do you say that?",
-		 "Why do you say that?",
-		 "Why do you say that?",
-		 "Why do you say that?",
+		 
 		 
 	}
 	//returning a single string response
