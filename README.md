@@ -1,3 +1,3 @@
 # GoChat
 
-For a class project I have been tasked with making a web app chat bot with go. For my reasearch into this project I looked up many different ways to actually code the chat bot itself as in my own opinion it is the most challenging part of the project. The best method I found was using regullar expression. 
+For a class project I have been tasked with making a web app chat bot with go. For my reasearch into this project I looked up many different ways to actually code the chat bot itself as in my own opinion it is the most challenging part of the project. The best method I found was using regullar expression. As seen in many chat bots online, devs tend to give them a personality of a popular pop culture character, due to this I have decided to model my bots personality off "Monokuma" from the game series "Danganronpa". Having a personailty like this brings a certain uniquiness to the bot and will make its responses less boring. 
