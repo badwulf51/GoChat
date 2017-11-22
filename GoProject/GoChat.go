@@ -14,17 +14,15 @@ import (
 
 func ElizaResponse(inputStr string) string{
 
-	input :=inputStr
-	
-//back ticks instead of quotes to make sure it doesnt leave the characters first
 	if matched, _ := regexp.MatchString(`(?i).*\bfather\b.*`, input); matched {
+    
+        return "daddy issues dont really intrest me that much"
+    }
+
+
+    if matched, _ := regexp.MatchString(`(?i).*\bmother\b.*`, input); matched {
 		//return the string below
-		return "Why dont you tell me more about your father?"
-	}
-	
-	if matched, _ := regexp.MatchString(`(?i).*\bmother\b.*`, input); matched {
-		//return the string below
-		return "Why dont you tell me more about your mother?"
+		return "Ohhhh you have a mom? Tell me more!"
 	}
 	
 	
@@ -33,35 +31,49 @@ func ElizaResponse(inputStr string) string{
 		return "Blah! I hate school! Talk about anything else, please"
 	}
 
-//capture I am
-	re := regexp.MustCompile("[iI] am ([^.!?]*)[.!?]?")
-	
-	if re.MatchString(input){
-		return re.ReplaceAllString(input, "How do you know you are $1?") 
 
-	}
-	
-// Capture He was 
-	re = regexp.MustCompile("[hH]e was ([^.!?]*)[.!?]?")
-	
-	if re.MatchString(input){
-		return re.ReplaceAllString(input, "Are you SURE he was $1?") 
-
-	}
-	
-	// Capture She was
-	// xir is temporary, for some reason i cant get it to capture she just for the time being 
-	re = regexp.MustCompile("[xX]ir was ([^.!?]*)[.!?]?")
-	
-	if re.MatchString(input){
-		return re.ReplaceAllString(input, "Are you SURE xir was $1?") 
-
+    if matched, _ := regexp.MatchString(`(?i).*\bdespair\b.*`, input); matched {
+		//return the string below
+		return "Hmmmm...now your talking my language!"
 	}
 
-	
+    if matched, _ := regexp.MatchString(`(?i).*\bjunko\b.*`, input); matched {
+		//return the string below
+		return "Eh eh eh I have no idea who you're talking about!"
+	}
 
-	answers := []string{
-		"I'm not sure what you are trying to say. Could you explain it to me?",
+    // Capture I am 
+    
+    re := regexp.MustCompile(`(?i)[iI] am ([^.?!]*)[.?!]?`)
+    
+    if matched := re.MatchString(input); matched {
+    
+        return re.ReplaceAllString(input, "How do you know you are $1?")
+    }    
+
+    re = regexp.MustCompile(`(?i)[yY]ou are ([^.?!]*)[.?!]?`)
+    
+    if matched := re.MatchString(input); matched {
+    
+        return re.ReplaceAllString(input, "Hmpfh! How dare you say I'm $1! I'm the best bear!")
+    }    
+    
+    re = regexp.MustCompile(`(?i)[sS]hut up ([^.?!]*)[.?!]?`)
+    
+    if matched := re.MatchString(input); matched {
+    
+        return re.ReplaceAllString(input, "phuhuh... why dont YOU shut up $1?")
+    }   
+
+    re = regexp.MustCompile(`(?i)I am ([^.?!]*)[.?!]?`)
+    
+    if matched := re.MatchString(input); matched {
+    
+        return re.ReplaceAllString(input, "How do you know you are $1?")
+    }     
+    answers := []string{
+    
+        "I'm not sure what you are trying to say. Could you explain it to me?",
 		"How does that make you feel?",
 		 "Why do you say that?",
 		 "Not sure what you mean...but I can vibe to it!",
@@ -70,42 +82,12 @@ func ElizaResponse(inputStr string) string{
 		 "hmmmmm...explain in detail?",
 		 "Do you kiss your mother with that mouth?!",
 		 "Gee thats something you dont want your father to hear!",
-		 
-		 
-	}
+    }
 	//returning a single string response
 	return answers[rand.Intn(len(answers))]
 
 }
-//==================================================================================================================
-func Reflect(input string) string {
-	// Split the input on word boundaries.
-	boundaries := regexp.MustCompile(`\b`)
-	tokens := boundaries.Split(input, -1)
-	
-	// List the reflections.
-	reflections := [][]string{
-		{`I`, `you`},
-		{`me`, `you`},
-		{`you`, `me`},
-		{`my`, `your`},
-		{`your`, `my`},
-	}
-	
-	// Loop through each token, reflecting it if there's a match.
-	for i, token := range tokens {
-		for _, reflection := range reflections {
-			if matched, _ := regexp.MatchString(reflection[0], token); matched {
-				tokens[i] = reflection[1]
-				break
-			}
-		}
-	}
-	
-	// Put the tokens back together.
-	return strings.Join(tokens, ``)
-}
-// =========================================================================================================
+
 
 func main(){
 	rand.Seed(time.Now().UTC().UnixNano())//get a random number
