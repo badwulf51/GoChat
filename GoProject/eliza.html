@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="style.css">
+
+ <style>
+ 
+  h1 {
+    color: firebrick;
+    line-height: 500px;
+    font-family: verdana;
+    font-size: 300%;
+ }
+
+ #chatlog{
+
+     background-color: lightblue;
+ }
+
+
+ body {
+
+     background-image: url("https://i.ytimg.com/vi/pB7J7kQDsZs/maxresdefault.jpg");
+ }
+
+ 
+ 
+ </style>
+</head>
+        <script>
+            function handleElizaResponse() {
+                
+            }
+        
+            function loadXMLDoc(filename, form) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("demo").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", filename, true);
+                xhttp.send();
+            }
+            
+            function loadXMLDocPOST(filename, form) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    
+                        // displays 404 if page cannot be found 
+                        document.getElementById("lastmessage").innerHTML = this.responseText;
+                        document.getElementById("chatlog").innerHTML = document.getElementById("chatlog").innerHTML + "<br> o " + 
+                                                                       form.userinput.value + "<br>" + this.responseText;
+                    }
+                };            
+                xhttp.open("POST", filename, true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("message=" + form.userinput.value);
+            }
+        </script>
+    <body>
+
+       
+
+
+        <h1>Monokuma Chat!</h1>
+
+        
+
+        <form method="POST" action="error.html" onSubmit="loadXMLDocPOST('echomessage.html', this);return false;">
+            <label>Message The Headmaster!:</label> 
+            <input type="text" name="userinput">
+            <input type="submit">
+        </form>
+
+        <div id="lastmessage">
+        ...
+        </div>
+        
+        <p>
+        
+        <div id="chatlog">
+        ...
+        </div>        
+        
+
+
+    </body>
+</html>
