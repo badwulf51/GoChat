@@ -1,5 +1,7 @@
 # GoChat
 
+N.B. VIEW IN RAW PASTE DATA FORM PLEASE.
+
 For a class project I have been tasked with making a web app chat bot with go. For my research into this project I looked up many different ways to actually code the chat bot itself as in my own opinion it is the most challenging part of the project. The best method I found was using regular expression. As seen in many chat bots online, devs tend to give them a personality of a popular pop culture character, due to this I have decided to model my bots personality off "Monokuma" from the game series "Danganronpa". Having a personality like this brings a certain uniqueness to the bot and will make its responses less boring. I have used regex to capture various responses and keywords entered by the user, once the user enters one of these key words the bot will output a response that fits the word or sentence entered. If the user enters a string that is not captured by the bot, the bot will output a random response. Some of the random responses that the bot outputs I have called "Conversation starters", for example, if the user enters a string that is not captured by the bot, the bot will reply with a random string that says "Gee do you kiss your mother with that mouth!?"Which in turn tempts the user to make his/her next string feature the word "mother" which is captured by the bot already. Here is a list of phrases that the bot will pick up upon once entered. 
 
 General words: 
