@@ -89,17 +89,31 @@ func ElizaResponse(inputStr string) string{
 }
 
 
-func main(){
-	rand.Seed(time.Now().UTC().UnixNano())//get a random number
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Please message me")
-	i := 1
-	for i <= 5 {
-		i++
-	input, _ := reader.ReadString('\n')
-	fmt.Scanf("%s", &input)
-	fmt.Println(ElizaResponse(input))
-	}
-	
+// main function 
+func main() {
+   
+    tmpl1 := template.Must(template.ParseFiles("eliza.html"))
+    tmpl2 := template.Must(template.ParseFiles("echomessage.html"))
 
+   
+    
+    http.HandleFunc("/eliza.html", func(w http.ResponseWriter, r *http.Request) {
+            
+            tmpl1.Execute(w, nil)
+            
+    })
+    // used to reply the bots response to paghe 
+    http.HandleFunc("/echomessage.html", func(w http.ResponseWriter, r *http.Request) {
+            
+        r.ParseForm()
+        usermessage := r.Form.Get("message")
+        fmt.Println(usermessage)
+        
+        response := ElizaResponse(usermessage)
+        fmt.Println(response)
+        
+        tmpl2.Execute(w, struct {Message string}{response})
+    })
+    // web server (127.0.0.1:8080/eliza.html)
+    http.ListenAndServe(":8080", nil)
 }
